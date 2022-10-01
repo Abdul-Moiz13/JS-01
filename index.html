@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav-bar">
+    <a href="" class="nav-1">Home</a>
+    <a href="" class="nav-1">Trending</a>
+    <a href="" class="nav-1">Your Library</a>
+    <a href="" class="nav-1">Liked Songs</a>
+  </div>
+  <marquee behavior="" direction="">Welcome to the my radio listen your fav songs by press the shown keys</marquee>
+  
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd><img src="./Images/2.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press A</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd><img src="./Images/4.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press S</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd><img src="./Images/5.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press D</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd><img src="./Images/6.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press F</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd><img src="./Images/WhatsApp Image 2022-10-01 at 9.56.30 PM.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press G</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd><img src="./Images/7.jpeg" alt="" width="100px"></kbd>
+      <span class="sound">Press H</span>
+    </div>
+   
+  </div>
+
+  <audio data-key="65" src="sounds/Dandelion.mpeg"></audio> 
+  <audio data-key="83" src="sounds/me and my friends.mpeg"></audio>
+  <audio data-key="68" src="sounds/Iraady.mpeg"></audio>
+  <audio data-key="70" src="sounds/until i found you.mpeg"></audio>
+  <audio data-key="71" src="sounds/glimpse of us.mpeg"></audio>
+  <audio data-key="72" src="sounds/perfect.mpeg"></audio>
+ 
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 2;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
